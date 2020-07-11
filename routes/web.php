@@ -56,3 +56,13 @@ Route::get('/',function (){
 
     return 'home';
 });
+
+Route::get('/dashboard', function(){
+
+    return 'dashboard';
+});
+
+Route::get('/redirect/{service}','UserControllers@redirect');
+
+Route::get('/callback/{service}','UserControllers@callback');
+
