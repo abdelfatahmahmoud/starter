@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Fronts;
 
+use App\models\Offer;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -13,6 +14,7 @@ class UserControllerTest extends Controller
 
         return view('welcome',compact('data')) ;
     }
+
 
 
 }

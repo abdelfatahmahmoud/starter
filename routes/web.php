@@ -44,7 +44,7 @@ route::group(['namespace=>front'],function (){
 
 
 
-
+/*
 
 
 Auth::routes(['verify'=>true]);
@@ -61,8 +61,26 @@ Route::get('/dashboard', function(){
 
     return 'dashboard';
 });
+*/
+
+/*
 
 Route::get('/redirect/{service}','UserControllers@redirect');
 
 Route::get('/callback/{service}','UserControllers@callback');
+*/
 
+Route::get('fill', 'NameController@setstamp');
+
+
+Route::group(['prefix' => 'offers'], function (){
+  // Route::get('allow','NameController@row');
+
+ //   Route::group(['prefix' => LaravelLocalization::setLocale(),
+   // 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function() {
+
+        Route::get('create', 'NameController@open');
+    //});
+    Route::POST('store','NameController@store') -> name('offers.store');
+
+});

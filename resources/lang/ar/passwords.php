@@ -13,12 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Welcome',
-    "Offer name is required" => 'Offer name is required',
-    "Offer max lenght 100 charcter" => 'Offer max lenght 100 charcter',
-    "Offer your name must be unique" => 'Offer your name must be unique',
-    "Offer the price must be number" => 'Offer the price must be number',
-    "Offer the field is empty" => 'Offer the field is empty',
-    "Offer detials is required" => 'Offer detials is required',
+    'reset' => 'Your password has been reset!',
+    'sent' => 'We have e-mailed your password reset link!',
+    'throttled' => 'Please wait before retrying.',
+    'token' => 'This password reset token is invalid.',
+    'user' => "We can't find a user with that e-mail address.",
 
 ];
