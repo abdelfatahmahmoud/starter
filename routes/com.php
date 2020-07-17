@@ -70,21 +70,18 @@ Route::get('/redirect/{service}','UserControllers@redirect');
 Route::get('/callback/{service}','UserControllers@callback');
 */
 
-//Route::get('fill', 'NameController@setstamp');
+Route::get('fill', 'NameController@setstamp');
 
 
 Route::group(['prefix' => 'offers'], function (){
   // Route::get('allow','NameController@row');
 
 
-        Route::get('create', 'NameController@open');
+        Route::get('null', 'NameController@open');
 
         Route::POST('store','NameController@store') -> name('offers.store');
 
         //Route::get('edit','NameController@edit');
-
-
-
 
 });
 

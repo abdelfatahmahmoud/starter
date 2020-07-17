@@ -65,7 +65,8 @@
             }
         </style>
     </head>
-    <body> <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -73,11 +74,11 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-
+                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $properties['native'] }} <span class="sr-only">(current)</span></a>
                 </li>
-
+                @endforeach
 
 
 
@@ -93,58 +94,26 @@
     </nav>
 
 
-
-        <div class="flex-center position-ref full-height">
-            <div class="container">
-                <div class="title m-b-md">
-                    <div class="text-center">اضافه منتجات جديده </div>
-                </div>
-
-                @if(Session::has('success'))
-
-                    <div class="alert alert-success text-center">
-
-                        {{Session::get('success')}}
-
-                    </div>
-
-                    @endif
-
-                <form method="POST" action="{{route('offers.store')}}">
-                    {{--<input name = "_token" value="{{csrf_token()}}">--}}
-                    @csrf
-
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">اسم المنتج</label>
-                        <input type="text" class="form-control" name="name">
-                        @error('name')
-                        <small class="form-text text-danger">{{$message}}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">السعر</label>
-                        <input type="text" class="form-control" name="price">
-                        @error('price')
-                        <small class="form-text text-danger">{{$message}}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">الوصف الخاص بالمنتج</label>
-                        <input type="text" class="form-control" name="detials">
-                        @error('detials')
-                        <small class="form-text text-danger">{{$message}}</small>
-                        @enderror
-                    </div>
-
-
-                    <button type="submit" class="btn btn-primary btn-block btn-sm ">اضافه المنتج</button>
-                </form>
-            </div>
-
-        </div>
-
-
-
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#id</th>
+            <th scope="col">name</th>
+            <th scope="col">price</th>
+            <th scope="col">detials</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach()
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        @endforeach
+        </tbody>
+    </table>
 
     </body>
 </html>

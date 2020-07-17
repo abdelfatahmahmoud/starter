@@ -30,14 +30,10 @@ class NameController extends Controller
     */
     public function open()
     {
-
         return view('create.open');
     }
-
     public function store(request $request)
     {
-
-
         //validation rule to form
 
         $error = $this->geterror();
@@ -50,8 +46,6 @@ class NameController extends Controller
 
             return redirect()->back()->withErrors($validator)->withInputs($request->all());
         }
-
-
         //insert to data
         Offer::create([
 
@@ -59,28 +53,24 @@ class NameController extends Controller
             'price' => $request->price,
             'detials' => $request->detials,
         ]);
-
         return redirect()->back()->with(['success' => 'تم الاضافه بنجاح']);
 
     }
-
-
 //this massege errors
 
     protected function getmsg()
     {
 
         return $msg = [
-            'name.required' =>       __('ar.Offer name is required'),
-            'name.max:100' =>        __('ar.Offer max lenght 100 charcter'),
-            'name.unique' =>         __('ar.Offer your name must be unique'),
-            'price.numeric' =>       __('ar.Offer the price must be number'),
-            'price.required' =>      __('ar.Offer the field is empty'),
-            'detials.required' =>    __('ar.Offer detials is required'),
+            'name.required'     =>       __('ar.Offer name is required'),
+            'name.max:100'      =>        __('ar.Offer max lenght 100 charcter'),
+            'name.unique'       =>         __('ar.Offer your name must be unique'),
+            'price.numeric'     =>       __('ar.Offer the price must be number'),
+            'price.required'    =>      __('ar.Offer the field is empty'),
+            'detials.required'  =>    __('ar.Offer detials is required'),
 
         ];
     }
-
     protected function geterror()
     {
 
@@ -93,4 +83,10 @@ class NameController extends Controller
 
     }
 
+    public function edit(){
+
+        $offers = Offer::select('id','name','price','detials')->get();
+
+        return view('create.edit');
+    }
 }
