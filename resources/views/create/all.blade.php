@@ -93,58 +93,35 @@
     </nav>
 
 
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#ID</th>
+            <th scope="col">{{__('ar.Offer name')}}</th>
+            <th scope="col">{{__('ar.Offer price')}}</th>
+            <th scope="col">{{__('ar.Offer detials')}}</th>
+            <th scope="col">{{__('ar.Offer operation')}}</th>
+        </tr>
+        </thead>
+        <tbody>
 
-        <div class="flex-center position-ref full-height">
-            <div class="container">
-                <div class="title m-b-md">
-                    <div class="text-center">اضافه منتجات جديده </div>
-                </div>
+        @foreach($offers as $offer)
+        <tr>
+            <th scope="row">{{$offer -> id}}</th>
+            <td>{{$offer -> name}}</td>
+            <td>{{$offer -> price}}</td>
+            <td>{{$offer -> detials}}</td>
+            <td>
 
-                @if(Session::has('success'))
+                <a  href="{{route('offers.edit' , $offer -> id)}}" class="btn btn-success">{{__('ar.Offer Update')}}</a>
 
-                    <div class="alert alert-success text-center">
-
-                        {{Session::get('success')}}
-
-                    </div>
-
-                    @endif
-
-                <form method="post" action="{{route('offers.update', $offer->id)}}">
-                    {{--<input name = "_token" value="{{csrf_token()}}">--}}
-                    @csrf
-
-                    <div class="form-group">
-
-
-                        <label for="exampleInputEmail1">اسم المنتج</label>
-                        <input type="text" class="form-control" name="name" value="{{$offer -> name}}">
-                        @error('name')
-                        <small class="form-text text-danger">{{$message}}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">السعر</label>
-                        <input type="text" class="form-control" name="price" value="{{$offer -> price}}">
-                        @error('price')
-                        <small class="form-text text-danger">{{$message}}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">الوصف الخاص بالمنتج</label>
-                        <input type="text" class="form-control" name="detials" value="{{$offer -> detials}}">
-                        @error('detials')
-                        <small class="form-text text-danger">{{$message}}</small>
-                        @enderror
-                    </div>
-
-
-                    <button type="submit" class="btn btn-primary btn-block btn-sm ">اضافه المنتج</button>
-                </form>
-            </div>
-
-        </div>
-
+            </td>
+        </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>
 
 
 

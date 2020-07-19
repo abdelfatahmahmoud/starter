@@ -81,6 +81,13 @@ Route::group(['prefix' => 'offers'], function (){
 
         Route::POST('store','NameController@store') -> name('offers.store');
 
+            Route::get('edit/{offer_id}', 'NameController@editOffer')->name('offers.edit');
+            Route::get('all', 'NameController@getall');
+
+            Route::post('update/{offer_id}','NameController@updateOffer')->name('offers.update');
+
+    Route::get('youtube', 'VideoController@viewer');
+
         //Route::get('edit','NameController@edit');
 
 

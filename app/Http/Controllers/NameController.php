@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OfferRequset;
 use App\models\Offer;
+use App\triats\Offers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class NameController extends Controller
 {
 
+    use Offers;
 
     /*
         public function setstamp(){
@@ -32,23 +35,32 @@ class NameController extends Controller
     {
         return view('create.open');
     }
-    public function store(request $request)
+    public function store(OfferRequset $request)
     {
         //validation rule to form
 
-        $error = $this->geterror();
+        // $error = $this->geterror();
 
-        $msg = $this->getmsg();
+        //$msg = $this->getmsg();
 
-        $validator = Validator::make($request->all(), $error, $msg);
+        // $validator = Validator::make($request->all(), $error, $msg);
 
-        if ($validator->fails()) {
+        //  if ($validator->fails()) {
 
-            return redirect()->back()->withErrors($validator)->withInputs($request->all());
-        }
+        //  return redirect()->back()->withErrors($validator)->withInputs($request->all());
+
+    //}
+        //saved images
+
+        $file_name = $this->saveimg($request -> photo , 'images/offers');
+
+
+
+
+
         //insert to data
         Offer::create([
-
+            'photo' => $file_name ,
             'name' => $request->name,
             'price' => $request->price,
             'detials' => $request->detials,
@@ -57,7 +69,7 @@ class NameController extends Controller
 
     }
 //this massege errors
-
+/*
     protected function getmsg()
     {
 
@@ -89,4 +101,60 @@ class NameController extends Controller
 
         return view('create.edit');
     }
+*/
+
+    // all products
+    public function getall(){
+
+      $offers =   Offer::select('id','name','price','detials') ->get();
+
+      return view('create.all', compact('offers'));
+    }
+
+    //edite
+
+    public function editOffer($offer_id){
+
+
+          $offer =   Offer:: select('name' ,'price', 'detials','id')->find($offer_id);
+      //    dd($offer);
+
+          return view('create.edit', compact('offer'));
+
+
+        return $offer_id;
+    }
+
+    //update
+    public function updateOffer(OfferRequset $request , $offer_id){
+
+        //validation request
+
+        $offer = Offer::find($offer_id);
+        if (! $offer){
+            return redirect() -> back();
+        }
+
+
+        //update date
+
+        $offer -> update($request -> all());
+
+    return redirect() ->back() -> with(['success' => 'تم التحديث بنجاح']);
+
+    }
+
+    public function saveimg($photo , $folder){
+
+        $file_extension = $photo-> getClientOriginalExtension();
+
+        $file_name = time(). ".".$file_extension;
+        $path = $folder;
+
+        $photo ->  move($path,$file_name);
+
+        return $file_name;
+    }
+
+
 }

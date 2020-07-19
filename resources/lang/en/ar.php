@@ -20,5 +20,9 @@ return [
     "Offer the price must be number" => 'Offer the price must be number',
     "Offer the field is empty" => 'Offer the field is empty',
     "Offer detials is required" => 'Offer detials is required',
-
+    "Offer name" =>  "Offer name",
+    "Offer price" =>  "Offer price",
+    "Offer detials" => "Offer detials" ,
+      "Offer operation" =>   "Offer operation",
+    "Offer Update" => 'Offer Update'
 ];

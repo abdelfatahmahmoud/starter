@@ -21,6 +21,9 @@ return [
     "Offer the price must be number" => 'يجب ان يكون السعر رقم',
     'Offer the field is empty' => 'الحقل الخاص بالسعر فارغ',
     "Offer detials is required" => 'يجب كتابه الوصف الخاص بالمنتج',
-
-
+    "Offer name" => 'اسم المنتج',
+    "Offer price" => 'سعر المنتج',
+    "Offer detials" => ',وصف المنتج',
+    "Offer operation" => 'العمليات',
+    'Offer Update' => 'تحديث '
 ];
