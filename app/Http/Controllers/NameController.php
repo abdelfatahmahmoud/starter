@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\OfferRequset;
+
 use App\models\Offer;
 use App\triats\Offers;
 use Illuminate\Http\Request;
@@ -116,7 +116,7 @@ class NameController extends Controller
     public function editOffer($offer_id){
 
 
-          $offer =   Offer:: select('name' ,'price', 'detials','id')->find($offer_id);
+          $offer =   Offer:: select('name', 'photo','price', 'detials','id')->find($offer_id);
       //    dd($offer);
 
           return view('create.edit', compact('offer'));
@@ -146,7 +146,7 @@ class NameController extends Controller
 
     public function saveimg($photo , $folder){
 
-        $file_extension = $photo-> getClientOriginalExtension();
+        $file_extension = $photo->  getClientOriginalExtension();
 
         $file_name = time(). ".".$file_extension;
         $path = $folder;
@@ -156,5 +156,26 @@ class NameController extends Controller
         return $file_name;
     }
 
+    public function delete($offer_id)
+    {
+
+        // check if offer id exist
+
+        $offers = Offer::find($offer_id); //this condition
+
+        if (!$offers)
+
+            return redirect()->back()->with(['error' => __('ar.Offer not exist')]);
+
+
+            $offers -> delete();
+
+
+        return redirect()
+            ->route('offers.all')
+            ->with(['success' => __('ar.Offer deleted success')]);
+
+
+    }
 
 }

@@ -25,5 +25,9 @@ return [
     "Offer price" => 'سعر المنتج',
     "Offer detials" => ',وصف المنتج',
     "Offer operation" => 'العمليات',
-    'Offer Update' => 'تحديث '
+    'Offer Update' => 'تحديث ',
+    'Offer photo' =>  'صوره المنتج',
+    'Offer delete' =>  'حذف المنتج',
+    'Offer not exist' => 'العرض غير موجود',
+    'Offer deleted success' => 'تم الحذف بنجاح',
 ];

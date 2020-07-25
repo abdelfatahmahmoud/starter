@@ -110,9 +110,18 @@
 
                     @endif
 
-                <form method="post" action="{{route('offers.update', $offer->id)}}">
+                <form method="post" action="" id="formdataa" enctype="multipart/form-data">
                     {{--<input name = "_token" value="{{csrf_token()}}">--}}
                     @csrf
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">صوره المنتج</label>
+                        <input type="file" class="form-control" name="photo" value="{{$offer -> photo}}">
+                        @error('photo')
+                        <small class="form-text text-danger">{{$message}}</small>
+                        @enderror
+                    </div>
+                    <input type="text" style="display: none;" class="form-control" name="offer_id" value="{{$offer -> id}}">
 
                     <div class="form-group">
 
@@ -139,12 +148,57 @@
                     </div>
 
 
-                    <button type="submit" class="btn btn-primary btn-block btn-sm ">اضافه المنتج</button>
+                    <button type="submit"  id="update" class="btn btn-primary btn-block btn-sm ">اضافه المنتج</button>
                 </form>
+                <div class="alert alert-success" id="success_msg" style="display: none;">
+                    تم الحفظ بنجاح
+
+                </div>
             </div>
 
         </div>
 
+
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        $(document).on('click','#update', function (e) {
+            e.preventDefault();
+            var formdata = new FormData($('#formdataa')[0]) ;
+
+            $.ajax({
+
+                type: 'post',
+                enctype:'multipart/form-data',
+                url:"{{route('ajax.updates')}}",
+                data:formdata,
+                processData:false,
+                contentType:false,
+                cache:false,
+                success: function (data) {
+
+                    if(data.status == true){
+                        $('#success_msg').show();
+
+                    }
+
+
+
+                }, error: function (reject) {
+
+                }
+            });
+
+        })
+
+
+
+
+    </script>
 
 
 

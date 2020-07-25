@@ -24,5 +24,9 @@ return [
     "Offer price" =>  "Offer price",
     "Offer detials" => "Offer detials" ,
       "Offer operation" =>   "Offer operation",
-    "Offer Update" => 'Offer Update'
+    "Offer Update" => 'Offer Update',
+    'Offer photo' =>  'Offer photo',
+    'Offer delete ' => 'Offer delete',
+    'Offer not exist' => 'Offer not exist',
+    'Offer deleted success' => 'Offer deleted success' ,
 ];

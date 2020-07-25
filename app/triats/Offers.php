@@ -7,7 +7,7 @@ trait Offers
 {
     public function saveimg($photo , $folder){
 
-        $file_extension = $photo-> getClientOriginalExtension();
+        $file_extension = $photo->  getClientOriginalExtension();
 
         $file_name = time(). ".".$file_extension;
         $path = $folder;

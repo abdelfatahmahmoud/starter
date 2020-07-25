@@ -65,32 +65,11 @@
             }
         </style>
     </head>
-    <body> <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <body>
+    <div class="alert alert-success" id="success_msg" style="display: none;">
+        تم الحفظ بنجاح
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-
-
-
-
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
+    </div>
 
 @if(Session::has('success'))
 
@@ -98,8 +77,9 @@
     <div class="alert alert-success">
         {{Session::get('success')}}
     </div>
-
     @endif
+{{--
+  @endif
 
 
     @if(Session::has('error'))
@@ -107,14 +87,16 @@
         <div class="alert alert-danger">
 
             {{Session::get('error')}}
-        </div>
+</div>
 
     @endif
+    --}}
+
 
 <div class="container">
     <table class="table">
         <thead>
-        <tr>
+        <tr >
             <th scope="col">#ID</th>
             <th scope="col">{{__('ar.Offer name')}}</th>
             <th scope="col">{{__('ar.Offer price')}}</th>
@@ -126,16 +108,17 @@
         <tbody>
 
         @foreach($offers as $offer)
-        <tr>
+        <tr class="offer_row{{$offer -> id}}">
             <th scope="row">{{$offer -> id}}</th>
             <td>{{$offer -> name}}</td>
             <td>{{$offer -> price}}</td>
             <td>{{$offer -> detials}}</td>
-            <td><img src="{{asset('images/offers'.$offer->photo)}}"></td>
+            <td><img  src="{{asset('images/offers/'.$offer->photo)}}"></td>
             <td>
                 <a  href="{{route('offers.edit',$offer -> id)}}" class="btn btn-success">{{__('ar.Offer Update')}}</a>
                 <a  href="{{route('offers.delete', $offer -> id)}}" class="btn btn-danger">{{__('ar.Offer delete')}}</a>
-
+                <a  href="" offer_id = "{{$offer -> id}}"  class="delete_ajax btn btn-info"> حذف اجاكس</a>
+                <a  href="{{route('ajax.edited', $offer -> id)}}"   class=" btn btn-info"> تحديث اجاكس</a>
             </td>
         </tr>
         @endforeach
@@ -143,6 +126,45 @@
     </table>
 </div>
 
+
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        $(document).on('click','.delete_ajax', function (e) {
+            e.preventDefault();
+            var del = $(this).attr('offer_id');
+
+            $.ajax({
+
+                type: 'post',
+
+                url: "{{route('ajax.deletes')}}",
+                data: {
+                    '_token': "{{csrf_token()}}",
+                    'id': del
+                },
+                success: function (data) {
+
+                    if (data.status == true) {
+                        $('#success_msg').show();
+
+                    }
+                        $('.offer_row'+data.id).remove();
+
+                }, error: function (reject) {
+
+                }
+            });
+        });
+
+
+
+
+    </script>
 
 
     </body>

@@ -27,7 +27,13 @@ class Counter
     public function handle(VideoViewer $event)
     {
 
-        $this -> updateview($event -> video);
+            if (!session()->has('views')) {
+
+            $this->updateview($event->video);
+        }else{
+            return false;
+        }
+
 
     }
 
@@ -36,6 +42,8 @@ class Counter
     $video -> viewer =  $video -> viewer  + 1;
 
     $video -> save();
+
+    session()-> put('views', $video -> id);
 
     }
 
