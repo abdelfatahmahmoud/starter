@@ -114,3 +114,12 @@ route::get('site', 'Auth\CustamControllers@site')-> middleware('auth:web') ->nam
 route::get('admin', 'Auth\CustamControllers@admin')-> middleware('auth:admin') ->name('admin');
 
 route::get('onec','Rell\RelationController@rell');
+
+
+##################  the relation ship has many #####################
+route::get('has_many','Rell\RelationController@hospitalanddoctor');
+route::get('hospitalss','Rell\RelationController@hospitalss');
+route::get('doctorss/{hos_id}','Rell\RelationController@doctorss')->name('doctor.hospital');
+
+
+##################  theEnd  relation ship has many #####################
