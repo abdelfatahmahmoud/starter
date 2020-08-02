@@ -80,6 +80,6 @@
                 <h1>{{__('ar.reset')}}</h1>
 
            </div>
-        </div>
+
     </body>
 </html>

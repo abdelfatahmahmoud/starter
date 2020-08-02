@@ -3,11 +3,11 @@
 
     <div class="container">
 
-        <h1 class="alert alert-success">
+        <h1 class="alert alert-success text-center">
            الاطباء
 
         </h1>
-    </div>
+
 
     <table class="table">
         <thead>
@@ -15,6 +15,9 @@
             <th scope="col">#</th>
             <th scope="col">name</th>
             <th scope="col">type</th>
+            <th scope="col">gendar</th>
+            <th scope="col">operation</th>
+
         </tr>
         </thead>
         <tbody>
@@ -25,11 +28,16 @@
             <th scope="row">{{$doctor -> id}}</th>
             <td>{{$doctor -> name}}</td>
             <td>{{$doctor -> type}}</td>
+            <td>{{$doctor -> gendar}}</td>
+            <td><a class="btn btn-success" href="{{route('getdepartment.doctor',$doctor -> id)}}">عرض الخدمات</a> </td>
         </tr>
-
+            @endforeach
+            @endif
         </tbody>
+
     </table>
-    @endforeach
-@endif
+
+
+    </div>
     @stop
 

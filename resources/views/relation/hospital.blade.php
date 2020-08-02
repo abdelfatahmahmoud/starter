@@ -28,7 +28,9 @@
             <th scope="row">{{$hospitals -> id}}</th>
             <td>{{$hospitals -> name}}</td>
             <td>{{$hospitals -> address}}</td>
-            <td><a href="{{route('doctor.hospital',$hospitals -> id)}}" class="btn btn-success">عرض الاطباء</a> </td>
+            <td><a href="{{route('doctor.hospital',$hospitals -> id)}}" class="btn btn-success">عرض الاطباء</a>
+                <a href="{{route('delete.hospital',$hospitals -> id)}}" class="btn btn-danger">حذف</a>
+            </td>
         </tr>
 
         </tbody>

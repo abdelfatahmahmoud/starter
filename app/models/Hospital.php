@@ -8,7 +8,7 @@ class Hospital extends Model
 {
     protected $table = "hospital";
 
-    protected $fillable =['name', 'address','created_at', 'updated_at'];
+    protected $fillable =['name', 'address','country_id','created_at', 'updated_at'];
 
     protected $hidden =['created_at', 'updated_at', ];
 

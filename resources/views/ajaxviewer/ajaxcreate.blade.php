@@ -76,31 +76,31 @@
         <div class="form-group">
             <label for="exampleInputEmail1">صوره المنتج</label>
             <input type="file" class="form-control" name="photo">
-            @error('photo')
-            <small class="form-text text-danger">{{$message}}</small>
-            @enderror
+
+            <small id="photo_error" class="form-text text-danger"></small>
+
         </div>
 
         <div class="form-group">
             <label for="exampleInputEmail1">اسم المنتج</label>
             <input type="text" class="form-control" name="name">
-            @error('name')
-            <small class="form-text text-danger">{{$message}}</small>
-            @enderror
+
+            <small id="name_error" class="form-text text-danger"></small>
+
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">السعر</label>
             <input type="text" class="form-control" name="price">
-            @error('price')
-            <small class="form-text text-danger">{{$message}}</small>
-            @enderror
+
+            <small id="price_error" class="form-text text-danger"></small>
+
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">الوصف الخاص بالمنتج</label>
             <input type="text" class="form-control" name="detials">
-            @error('detials')
-            <small class="form-text text-danger">{{$message}}</small>
-            @enderror
+
+            <small id="detials_error" class="form-text text-danger"></small>
+
         </div>
 
 
@@ -123,6 +123,12 @@
 
         $(document).on('click','#saved', function (e) {
            e.preventDefault();
+
+          $('#photo_error').text('');
+            $('#name_error').text('');
+            $('#price_error').text('');
+            $('#detials_error').text('');
+
            var formdata = new FormData($('#formsend')[0]) ;
 
             $.ajax({
@@ -145,6 +151,12 @@
 
                 }, error: function (reject) {
 
+                     var response = $.parseJSON(reject.responseText);
+                     $.each(response.errors,  function (key, val) {
+
+                         $('#' + key + "_error").text(val[0]);
+
+                     });
                 }
             });
 

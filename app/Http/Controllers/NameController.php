@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\OfferRequset;
 use App\models\Offer;
 use App\triats\Offers;
 use Illuminate\Http\Request;

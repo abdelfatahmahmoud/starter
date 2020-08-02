@@ -17,7 +17,7 @@ class Ajaxcontroller extends Controller
 
     }
 
-    public function stores(Request $request){
+    public function stores(OfferRequset $request){
 
      $file_name = $this->saveimg($request -> photo , 'images/offers');
 
@@ -130,7 +130,7 @@ class Ajaxcontroller extends Controller
 
     public function login(){
 
-            return view('login');
+        return view('auth.login');
     }
 
 }

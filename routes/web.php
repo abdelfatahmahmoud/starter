@@ -118,8 +118,30 @@ route::get('onec','Rell\RelationController@rell');
 
 ##################  the relation ship has many #####################
 route::get('has_many','Rell\RelationController@hospitalanddoctor');
-route::get('hospitalss','Rell\RelationController@hospitalss');
-route::get('doctorss/{hos_id}','Rell\RelationController@doctorss')->name('doctor.hospital');
+route::get('hospitalss','Rell\RelationController@hospitalss')->name('hospital.all');
+route::get('doctorss/{hospital_id}','Rell\RelationController@doctorss')->name('doctor.hospital');
+route::get('delete/{hos_id}','Rell\RelationController@deleted')->name('delete.hospital');
 
+
+
+route::get('hospital_has_doctor','Rell\RelationController@hospitalhasdoctor');
+route::get('hospital_has_doctor_male','Rell\RelationController@hospitalhasdoctormale');
+route::get('hospital_not_has_doctor','Rell\RelationController@hospitalnothasdoctor');
+route::get('Services','Rell\RelationController@doctortoservices');
+route::get('doctoross','Rell\RelationController@getdepartmengt');
+
+route::get('docteor-services-{doc_id}','Rell\RelationController@servicesdoctor')->name('getdepartment.doctor');
+route::post('services-ofdoctor','Rell\RelationController@showservicess')->name('save.doctors.services');
 
 ##################  theEnd  relation ship has many #####################
+
+##################  has one through  relation ship has many #####################
+route::get('get-pationt-doctor','Rell\RelationController@getpationt');
+
+
+##################End  has one through  relation ship has many #####################
+##################  has many through  relation ship has many #####################
+route::get('get-country-doctor','Rell\RelationController@getcountry');
+Route::get('country-with-doctors','Rell\RelationController@getCountryWithDoctors');
+
+##################End  has many through  relation ship has many #####################
