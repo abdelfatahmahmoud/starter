@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome',$data) ;
 });
 */
+define('paginations',10);
 
 Route::get('/landing', function () {
     return view('landing') ;

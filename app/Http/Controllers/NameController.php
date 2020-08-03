@@ -107,10 +107,18 @@ class NameController extends Controller
     // all products
     public function getall(){
 
+     /*
       $offers =   Offer::select('id','name','price','detials') ->get();
 
       return view('create.all', compact('offers'));
-    }
+
+    */
+
+        $offers =   Offer::select('id','name','photo','price','detials') ->paginate(paginations);
+
+        return view('create.all', compact('offers'));
+
+     }
 
     //edite
 
