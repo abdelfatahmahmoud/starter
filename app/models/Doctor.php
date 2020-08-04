@@ -22,4 +22,11 @@ class Doctor extends Model
 
         return $this ->belongsToMany('App\models\Service','doctor_services','doctor_id','services_id','id','id');
     }
+
+// get accessors
+    public function getGendarAttribute($coll){
+
+      return  $coll == 1 ? 'male' : 'female';
+
+    }
 }

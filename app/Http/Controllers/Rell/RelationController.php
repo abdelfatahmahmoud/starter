@@ -175,4 +175,22 @@ return response()-> json($user);
      dd($country = Countrie::with('doctors')->find(1));
     }
 
+
+    public function getdata(){
+
+    $doctors = Doctor::select('id','name','gendar')->get();
+/*
+    if (isset($doctors) && $doctors-> count() > 0) {
+
+        foreach ($doctors as $doctor){
+
+            $doctor -> gendar =  $doctor -> gendar == 1 ? 'male' : 'female';
+
+             }
+        }
+*/
+        return $doctors;
+
+    }
+
 }

@@ -92,6 +92,8 @@ Route::group(['prefix' => 'offers'], function (){
 
         //Route::get('edit','NameController@edit');
 
+    Route::get('getstatus-activated', 'NameController@getsatus');
+
 });
 
 Route::get('youtube', 'VideoController@viewer') ->middleware('auth');
@@ -146,3 +148,11 @@ route::get('get-country-doctor','Rell\RelationController@getcountry');
 Route::get('country-with-doctors','Rell\RelationController@getCountryWithDoctors');
 
 ##################End  has many through  relation ship has many #####################
+
+
+################# start  Accessors & Mutators for Models#####################
+Route::get('Accessors','Rell\RelationController@getdata');
+
+
+################# End  Accessors & Mutators for Models#####################
+

@@ -187,4 +187,16 @@ class NameController extends Controller
 
     }
 
+    public function getsatus(){
+
+
+        //local scopes in method
+        //return $notactivate = Offer::inactive()->get();
+
+        //global scope
+        return $notactivate = Offer::get();
+
+
+    }
+
 }
